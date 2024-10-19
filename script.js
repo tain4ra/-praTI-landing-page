@@ -5,10 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Função para buscar os serviços
     async function fetchServices() {
         try {
-            const response = await fetch('https://jsonplaceholder.typicode.com/posts'); // Exemplo de API
+            const response = await fetch('https://jsonplaceholder.typicode.com/posts');
             const data = await response.json();
 
-            // Limitando a 8 serviços
             const services = data.slice(0, 10);
 
             // Inserindo os serviços no grid
@@ -38,7 +37,7 @@ async function buscarTestemunhos() {
         const response = await fetch('https://jsonplaceholder.typicode.com/comments');
         if (!response.ok) throw new Error('Erro na rede');
         const comentarios = await response.json();
-        
+
         // Adaptar dados para o formato esperado
         return comentarios.map(comentario => ({
             nome: comentario.name,
@@ -56,10 +55,10 @@ async function buscarTestemunhos() {
 async function renderizarTestemunhos() {
     const container = document.getElementById('testemunhos-container');
     const testemunhos = await buscarTestemunhos();
-    
+
     // Limitar a 10 depoimentos
     const depoimentosLimitados = testemunhos.slice(0, 20);
-    
+
     // Se não houver depoimentos, exibir mensagem
     if (depoimentosLimitados.length === 0) {
         container.innerHTML = '<p>Nenhum depoimento disponível.</p>';
@@ -88,9 +87,6 @@ renderizarTestemunhos();
 
 
 
-
-
-
 // Slider com Swiper.js
 const swiper = new Swiper('.swiper-container', {
     loop: true,
@@ -111,11 +107,11 @@ AOS.init();
 
 
 // Inicialize o EmailJS
-(function() {
-    emailjs.init("vSNGUP7LTSgmytz-h"); // Substitua pelo seu User ID do EmailJS
+(function () {
+    emailjs.init("vSNGUP7LTSgmytz-h");
 })();
 
-document.getElementById('contato-form').addEventListener('submit', async function(event) {
+document.getElementById('contato-form').addEventListener('submit', async function (event) {
     event.preventDefault(); // Evita o envio padrão do formulário
 
     const nome = document.getElementById('nome').value;
@@ -144,7 +140,3 @@ document.getElementById('contato-form').addEventListener('submit', async functio
         document.getElementById('resultado').innerHTML = "Erro ao enviar mensagem. Tente novamente.";
     }
 });
-
-
-
-
